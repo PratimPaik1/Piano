@@ -13,7 +13,7 @@ body {
 }
 
 body{
-  background-color: rgb(108, 107, 107);
+  background-color: rgb(25, 25, 25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,35 +24,52 @@ body{
     border: 2px solid white;
     padding: 10px 50px;
     display: flex;
-    background-color:black;
+    background-color:rgb(112, 112, 112);
     border-radius: 25px;
+    position: relative;
 }
 .key {
     flex:1;
 
     
     background: #ddd;
-    border-left: 5px solid black;
+    border-right: 5px solid rgba(0, 0, 0, 0.87);
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.15s;
+    transition: 0.1s;
     border-radius: 0 0 10px 10px;
+    box-shadow: 0px 4px 1px rgba(116, 115, 115, 0.745);
+}
+.key:last-child {
+    border-right: none;   /* FIX */
 }
 
-
+#box img{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+   
+    top: 50%;
+    filter: brightness(0.6);
+    
+}
+#right{
+    right:0% ;
+}
+#left{
+    left:0%;
+}
 
 .key h1{
     color: black;
    
     user-select: none;
 }
-#box:nth-last-child{
-    border: none;
-}
+
 #icon{
     position: absolute;
-    top:15%;
+    top:-45%;
     left: 45%;
     font-size: 5rem;
     opacity: 0;

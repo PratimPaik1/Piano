@@ -6,11 +6,11 @@ let icon=document.querySelector("#icon");
 
 
 box.addEventListener("click",function(e){
-    console.log(e.target.id)
+    // console.log(e.target.id)
     playByClick(e.target.id)
 })
 function playByClick(e){
-    console.log(e)
+    // console.log(e)
     let aud = new Audio(`./assets/${e}.mp3`);
     aud.currentTime = 0;   
     aud.play();
@@ -22,10 +22,15 @@ function effect(keyBox){
     
         if (keyBox) {
             keyBox.style.backgroundColor="gray"
-            keyBox.style.scale="1.1"
+            keyBox.style.scale="0.98"
             icon.style.opacity=1
             let rota=Math.random()*359
             let left=Math.random()*30+20
+            // console.log(keyBox);
+            
+
+           keyBox.style.boxShadow = "none";
+
 
             setTimeout(function(){
 
@@ -34,6 +39,7 @@ function effect(keyBox){
                 icon.style.left=left+"%"
                 keyBox.style.backgroundColor="white"
                 
+                keyBox.style.boxShadow = "0px 3px 1px rgba(116, 115, 115, 0.745)";
                 keyBox.style.scale="1"
             
         }   , 200);
@@ -41,7 +47,7 @@ function effect(keyBox){
 }
 
 document.addEventListener("keydown", function (e) {
-
+    
 
     if (/^[a-zA-Z]$/.test(e.key)) {
         playAudio(e.key);
