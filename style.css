@@ -22,28 +22,65 @@ body{
     height: 300px;
     width: 1200px;
     border: 2px solid white;
-    padding: 10px 50px;
+    padding: 25px 50px;
     display: flex;
-    background-color:rgb(112, 112, 112);
+    background-color:rgb(78, 77, 77);
     border-radius: 25px;
     position: relative;
-}
-.key {
-    flex:1;
+    border: none;
 
     
-    background: #ddd;
-    border-right: 5px solid rgba(0, 0, 0, 0.87);
+}
+
+.key{
     display: flex;
+    position: relative;
+    flex:1;
+    height: 100%;
+   
+ 
+    display: flex;
+    
+}
+.key h1{
+     user-select: none;     
+    pointer-events: auto;  
+    cursor: pointer;
+}
+.white,.black{
+    border-radius: 0 0 25px 25px;
+    border: 2px solid black;
+}
+
+
+
+.white{
+    background-color: #fff;
+    flex:1;
+    display: flex;
+    align-items: flex-end;
     justify-content: center;
-    align-items: center;
-    transition: 0.1s;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0px 4px 1px rgba(116, 115, 115, 0.745);
+    
 }
-.key:last-child {
-    border-right: none;   /* FIX */
+.white h1{
+    
+    color:black;
 }
+.black{
+    background-color: rgb(27, 26, 26);
+    flex:1;
+    position: absolute;
+    width: 70%;
+    height: 50%;
+    right: 0%;
+    text-align: center;
+}
+.black h1{
+    color:white;
+}
+
+
+
 
 #box img{
     height: 50px;
@@ -52,6 +89,7 @@ body{
    
     top: 50%;
     filter: brightness(0.6);
+    user-select: none;
     
 }
 #right{
@@ -61,11 +99,7 @@ body{
     left:0%;
 }
 
-.key h1{
-    color: black;
-   
-    user-select: none;
-}
+
 
 #icon{
     position: absolute;

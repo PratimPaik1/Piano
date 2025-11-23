@@ -1,14 +1,20 @@
 let h1 = document.querySelector('h1');
 let box = document.querySelector("#box");
-let icon=document.querySelector("#icon");
 
 
 
 
-box.addEventListener("click",function(e){
-    // console.log(e.target.id)
-    playByClick(e.target.id)
-})
+
+box.addEventListener("click", function (e) {
+
+    let keyDiv = e.target.closest(".white, .black");
+    if (!keyDiv) return;
+     
+    console.log(keyDiv)
+    let id = keyDiv.id;
+    playByClick(id);
+});
+
 function playByClick(e){
     // console.log(e)
     let aud = new Audio(`./assets/${e}.mp3`);
@@ -21,23 +27,35 @@ function playByClick(e){
 function effect(keyBox){
     
         if (keyBox) {
+            // console.log(keyBox)
+
+
             keyBox.style.backgroundColor="gray"
             keyBox.style.scale="0.98"
             icon.style.opacity=1
             let rota=Math.random()*359
             let left=Math.random()*30+20
             // console.log(keyBox);
-            
+            let r=Math.floor(Math.random()*255)
+            let g=Math.floor(Math.random()*255)
+            let b=Math.floor(Math.random()*255)
 
            keyBox.style.boxShadow = "none";
-
+           icon.style.color=`rgb(${r},${g},${b})`
 
             setTimeout(function(){
 
                 icon.style.opacity=0
                 icon.style.rotate=rota+"deg"
                 icon.style.left=left+"%"
-                keyBox.style.backgroundColor="white"
+                console.log(keyBox.id);
+                if(keyBox.id%2==0)
+                    keyBox.style.backgroundColor="white"
+                else
+                    keyBox.style.backgroundColor="rgb(27, 26, 26)"
+
+
+                
                 
                 keyBox.style.boxShadow = "0px 3px 1px rgba(116, 115, 115, 0.745)";
                 keyBox.style.scale="1"
@@ -80,20 +98,34 @@ function playAudio(key) {
 
 
 function printKeyboard() {
-    for (let code = 65; code <= 90; code++) {  // A–Z
-        let key = String.fromCharCode(code);
-        let keybox = document.createElement("div");
-        let clas = code-65
-        keybox.className = `key ${clas}`;
-
-        let id = code - 37;   // 28–53
-        keybox.id = id;
+    let clutter=`<i  id="icon" class="ri-music-ai-line"></i>
+      <img id="left" src="./assets/speaker-cartoon-loudspeaker-subwoofer-speaker-grille-vehicle-audio-loudspeaker-enclosure-midrange-speaker-jl-audio-png-clipart-removebg-preview.png" alt="">
+       <img  id="right" src="./assets/speaker-cartoon-loudspeaker-subwoofer-speaker-grille-vehicle-audio-loudspeaker-enclosure-midrange-speaker-jl-audio-png-clipart-removebg-preview.png" alt="">
+    `
+    for (let code = 65; code <= 90; code+=2) {  // A–Z
+        
 
 
-        keybox.innerHTML = `<h1>${key}</h1>`;
-   
-        box.appendChild(keybox);
+
+
+
+        let whitekey=String.fromCharCode(code);
+        let whiteId=code-37;
+        let blackKey=String.fromCharCode(code+1);
+        let blackId=code+1-37;
+        clutter+=` <div class="key">
+                <div class="white" id="${whiteId}">
+                    <h1>${whitekey}</h1>
+
+                </div>
+                <div class="black " id=${blackId}>
+                    <h1>${blackKey}</h1>
+                </div>
+            </div>`
+
     }
+    box.innerHTML=clutter
 }
 
 printKeyboard();
+let icon=document.querySelector("#icon");
